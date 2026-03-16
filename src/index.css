@@ -95,6 +95,16 @@ body{
    @apply transition-colors duration-300;
    font-feature-settings: "rlig" 1,"calt" 1;
  }
+ input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: hsl(var(--foreground)) !important;
+    -webkit-box-shadow: 0 0 0px 1000px hsl(var(--background)) inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 @utility container {
@@ -156,7 +166,7 @@ body{
 /* In index.css */
 
 @utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
+  @apply absolute bg-linear-to-r from-transparent via-white to-white rounded-full;
   
   /* Make sure you REMOVE any 'rotate-45' or 'transform' from here */
   

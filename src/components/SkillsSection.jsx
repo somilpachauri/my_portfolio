@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cn } from "../lib/utils";
 
+// You can keep the array as is, or remove the 'level' property later to clean it up.
 const skills = [
   // Languages
   { name: "JavaScript", level: 85, category: "language" },
@@ -71,17 +72,15 @@ export const SkillsSection = () => {
           My <span className="text-primary">Skills</span>
         </h2>
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-        
           {categories.map((category, key) => {
             return (
               <button
                 key={key}
-                onClick={() => setActiveCategory(category)} 
+                onClick={() => setActiveCategory(category)}
                 className={cn(
                   "px-5 py-2 rounded-full duration-300 capitalize",
                   activeCategory === category
                     ? "bg-primary text-primary-foreground"
-                  
                     : "bg-secondary/70 text-foreground hover:bg-secondary"
                 )}
               >
@@ -91,28 +90,17 @@ export const SkillsSection = () => {
           })}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Updated Grid: Added 4 columns for large screens since cards are smaller now */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-lg shadow0-xs card-hover"
+              // Updated Card Styling: Centered text, reduced padding, added hover border effect
+              className="bg-card p-4 rounded-lg shadow-sm card-hover flex items-center justify-center border border-transparent hover:border-primary/20 transition-all"
             >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg">{skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{
-                    width: skill.level + "%",
-                  }}
-                />
-              </div>
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
+              <h3 className="font-semibold text-base md:text-lg text-center">
+                {skill.name}
+              </h3>
             </div>
           ))}
         </div>
